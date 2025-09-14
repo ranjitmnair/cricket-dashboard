@@ -1,0 +1,38 @@
+export const  mockMatches = [
+  {
+    id: 1,
+    team1: { name: "Mumbai Indians", shortName: "MI"},
+    team2: { name: "Chennai Super Kings", shortName: "CSK"},
+    status: "live",
+    venue: "Wankhede Stadium, Mumbai",
+    date: "2024-04-15",
+    time: "19:30",
+    score: {
+      team1: { runs: 185, wickets: 6, overs: 20 },
+      team2: { runs: 142, wickets: 8, overs: 18.3 },
+    },
+    result: null,
+  },
+  {
+    id: 2,
+    team1: { name: "Royal Challengers Bangalore", shortName: "RCB"},
+    team2: { name: "Delhi Capitals", shortName: "DC" },
+    status: "upcoming",
+    venue: "M. Chinnaswamy Stadium, Bangalore",
+    date: "2024-04-16",
+    time: "15:30",
+    score: null,
+    result: null,
+  },
+  {
+    id: 3,
+    team1: { name: "Kolkata Knight Riders", shortName: "KKR"},
+    team2: { name: "Rajasthan Royals", shortName: "RR"},
+    status: "upcoming",
+    venue: "Eden Gardens, Kolkata",
+    date: "2024-04-16",
+    time: "19:30",
+    score: null,
+    result: null,
+  },
+]
