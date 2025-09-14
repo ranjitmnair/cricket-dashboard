@@ -1,5 +1,9 @@
+"use client"
+
+import { LiveMatchesSection } from "@/components/live-matches-section";
+
 const Dashboard = ()=>{
-    return <>This is IPL dashboard</>
+    return <LiveMatchesSection/>
 }
 
 export default Dashboard;
