@@ -1,29 +1,40 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
-import { LiveMatchesSection } from "@/components/live-matches-section"
-
+import { LiveMatchesSection } from "@/components/live-matches-section";
+import { DashboardHeader } from "@/components/dashboard-header";
+import { DashboardNavigation } from "@/components/dashboard-navigation";
+import { PointsTable } from "@/components/points-table";
 
 export default function Dashboard() {
-  const [activeSection, setActiveSection] = useState("live")
+  const [activeSection, setActiveSection] = useState("live");
 
   const renderActiveSection = () => {
     switch (activeSection) {
       case "live":
-        return <LiveMatchesSection />    
+        return <LiveMatchesSection />;
+      case "points":
+        return <PointsTable />;
       default:
-        return <LiveMatchesSection />
+        return <LiveMatchesSection />;
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-background">
-
+      <DashboardHeader
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
       <main className="container mx-auto px-4 py-6">
-       
-
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">      
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="hidden lg:block lg:col-span-1">
+            <DashboardNavigation
+              activeSection={activeSection}
+              onSectionChange={setActiveSection}
+            />
+          </div>
           <div className="lg:col-span-3">
             <div className="space-y-6">{renderActiveSection()}</div>
           </div>
@@ -43,5 +54,5 @@ export default function Dashboard() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
