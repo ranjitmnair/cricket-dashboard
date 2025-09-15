@@ -1,8 +1,8 @@
-export const  mockMatches = [
+export const mockMatches = [
   {
     id: 1,
-    team1: { name: "Mumbai Indians", shortName: "MI"},
-    team2: { name: "Chennai Super Kings", shortName: "CSK"},
+    team1: { name: "Mumbai Indians", shortName: "MI" },
+    team2: { name: "Chennai Super Kings", shortName: "CSK" },
     status: "live",
     venue: "Wankhede Stadium, Mumbai",
     date: "2024-04-15",
@@ -15,7 +15,7 @@ export const  mockMatches = [
   },
   {
     id: 2,
-    team1: { name: "Royal Challengers Bangalore", shortName: "RCB"},
+    team1: { name: "Royal Challengers Bangalore", shortName: "RCB" },
     team2: { name: "Delhi Capitals", shortName: "DC" },
     status: "upcoming",
     venue: "M. Chinnaswamy Stadium, Bangalore",
@@ -26,8 +26,8 @@ export const  mockMatches = [
   },
   {
     id: 3,
-    team1: { name: "Kolkata Knight Riders", shortName: "KKR"},
-    team2: { name: "Rajasthan Royals", shortName: "RR"},
+    team1: { name: "Kolkata Knight Riders", shortName: "KKR" },
+    team2: { name: "Rajasthan Royals", shortName: "RR" },
     status: "upcoming",
     venue: "Eden Gardens, Kolkata",
     date: "2024-04-16",
@@ -35,13 +35,12 @@ export const  mockMatches = [
     score: null,
     result: null,
   },
-]
-
+];
 
 export const mockPointsTable = [
   {
     position: 1,
-    team: { name: "Rajasthan Royals", shortName: "RR"},
+    team: { name: "Rajasthan Royals", shortName: "RR" },
     matches: 14,
     won: 11,
     lost: 3,
@@ -51,7 +50,7 @@ export const mockPointsTable = [
   },
   {
     position: 2,
-    team: { name: "Gujarat Titans", shortName: "GT"},
+    team: { name: "Gujarat Titans", shortName: "GT" },
     matches: 14,
     won: 10,
     lost: 4,
@@ -61,7 +60,7 @@ export const mockPointsTable = [
   },
   {
     position: 3,
-    team: { name: "Lucknow Super Giants", shortName: "LSG"},
+    team: { name: "Lucknow Super Giants", shortName: "LSG" },
     matches: 14,
     won: 9,
     lost: 5,
@@ -71,7 +70,7 @@ export const mockPointsTable = [
   },
   {
     position: 4,
-    team: { name: "Royal Challengers Bangalore", shortName: "RCB"},
+    team: { name: "Royal Challengers Bangalore", shortName: "RCB" },
     matches: 14,
     won: 8,
     lost: 6,
@@ -81,7 +80,7 @@ export const mockPointsTable = [
   },
   {
     position: 5,
-    team: { name: "Delhi Capitals", shortName: "DC"},
+    team: { name: "Delhi Capitals", shortName: "DC" },
     matches: 14,
     won: 7,
     lost: 7,
@@ -91,7 +90,7 @@ export const mockPointsTable = [
   },
   {
     position: 6,
-    team: { name: "Punjab Kings", shortName: "PBKS"},
+    team: { name: "Punjab Kings", shortName: "PBKS" },
     matches: 14,
     won: 7,
     lost: 7,
@@ -101,7 +100,7 @@ export const mockPointsTable = [
   },
   {
     position: 7,
-    team: { name: "Kolkata Knight Riders", shortName: "KKR"},
+    team: { name: "Kolkata Knight Riders", shortName: "KKR" },
     matches: 14,
     won: 6,
     lost: 8,
@@ -111,7 +110,7 @@ export const mockPointsTable = [
   },
   {
     position: 8,
-    team: { name: "Sunrisers Hyderabad", shortName: "SRH"},
+    team: { name: "Sunrisers Hyderabad", shortName: "SRH" },
     matches: 14,
     won: 6,
     lost: 8,
@@ -131,7 +130,7 @@ export const mockPointsTable = [
   },
   {
     position: 10,
-    team: { name: "Mumbai Indians", shortName: "MI"},
+    team: { name: "Mumbai Indians", shortName: "MI" },
     matches: 14,
     won: 3,
     lost: 11,
@@ -139,4 +138,62 @@ export const mockPointsTable = [
     nrr: "-0.506",
     form: ["L", "L", "L", "L", "W"],
   },
-]
+];
+
+export const mockSchedule = [
+  {
+    id: 1,
+    matchNumber: "Match 1",
+    team1: { name: "Chennai Super Kings", shortName: "CSK" },
+    team2: { name: "Gujarat Titans", shortName: "GT" },
+    date: "2024-03-22",
+    time: "19:30",
+    venue: "M. A. Chidambaram Stadium, Chennai",
+    status: "completed",
+    result: "GT won by 5 wickets",
+  },
+  {
+    id: 2,
+    matchNumber: "Match 2",
+    team1: { name: "Punjab Kings", shortName: "PBKS" },
+    team2: { name: "Delhi Capitals", shortName: "DC" },
+    date: "2024-03-23",
+    time: "15:30",
+    venue: "Mullanpur Cricket Stadium, Mohali",
+    status: "completed",
+    result: "DC won by 6 wickets",
+  },
+  {
+    id: 3,
+    matchNumber: "Match 3",
+    team1: { name: "Rajasthan Royals", shortName: "RR" },
+    team2: { name: "Lucknow Super Giants", shortName: "LSG" },
+    date: "2024-04-16",
+    time: "19:30",
+    venue: "Sawai Mansingh Stadium, Jaipur",
+    status: "upcoming",
+    result: null,
+  },
+  {
+    id: 4,
+    matchNumber: "Match 4",
+    team1: { name: "Mumbai Indians", shortName: "MI" },
+    team2: { name: "Sunrisers Hyderabad", shortName: "SRH" },
+    date: "2024-04-17",
+    time: "15:30",
+    venue: "Wankhede Stadium, Mumbai",
+    status: "upcoming",
+    result: null,
+  },
+  {
+    id: 5,
+    matchNumber: "Match 5",
+    team1: { name: "Royal Challengers Bangalore", shortName: "RCB" },
+    team2: { name: "Kolkata Knight Riders", shortName: "KKR" },
+    date: "2024-04-17",
+    time: "19:30",
+    venue: "M. Chinnaswamy Stadium, Bangalore",
+    status: "upcoming",
+    result: null,
+  },
+];
