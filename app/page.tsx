@@ -1,9 +1,47 @@
 "use client"
 
-import { LiveMatchesSection } from "@/components/live-matches-section";
+import { useState } from "react"
 
-const Dashboard = ()=>{
-    return <LiveMatchesSection/>
+import { LiveMatchesSection } from "@/components/live-matches-section"
+
+
+export default function Dashboard() {
+  const [activeSection, setActiveSection] = useState("live")
+
+  const renderActiveSection = () => {
+    switch (activeSection) {
+      case "live":
+        return <LiveMatchesSection />    
+      default:
+        return <LiveMatchesSection />
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+
+      <main className="container mx-auto px-4 py-6">
+       
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">      
+          <div className="lg:col-span-3">
+            <div className="space-y-6">{renderActiveSection()}</div>
+          </div>
+        </div>
+      </main>
+
+      <footer className="border-t bg-muted/50 py-6 mt-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-sm text-muted-foreground text-center sm:text-left">
+              <p>IPL T20 Live Dashboard - Real-time cricket updates</p>
+            </div>
+            <div className="text-xs text-muted-foreground text-center sm:text-right">
+              <p>{`Built with <3 by @ranjitmnair`}</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
 }
-
-export default Dashboard;
