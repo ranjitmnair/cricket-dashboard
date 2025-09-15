@@ -21,3 +21,15 @@ export interface Team {
   name: string;
   shortName: string;
 }
+
+
+export interface PointsTableEntry {
+  position: number
+  team: Team
+  matches: number
+  won: number
+  lost: number
+  points: number
+  nrr: string
+  form: string[]
+}
