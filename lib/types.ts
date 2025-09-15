@@ -33,3 +33,15 @@ export interface PointsTableEntry {
   nrr: string
   form: string[]
 }
+
+export interface ScheduleMatch {
+  id: number
+  matchNumber: string
+  team1: Team
+  team2: Team
+  date: string
+  time: string
+  venue: string
+  status: "upcoming" | "completed" | "live"
+  result?: string | null
+}

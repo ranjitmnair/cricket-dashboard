@@ -6,6 +6,7 @@ import { LiveMatchesSection } from "@/components/live-matches-section";
 import { DashboardHeader } from "@/components/dashboard-header";
 import { DashboardNavigation } from "@/components/dashboard-navigation";
 import { PointsTable } from "@/components/points-table";
+import { MatchSchedule } from "@/components/match-schedule";
 
 export default function Dashboard() {
   const [activeSection, setActiveSection] = useState("live");
@@ -16,6 +17,8 @@ export default function Dashboard() {
         return <LiveMatchesSection />;
       case "points":
         return <PointsTable />;
+      case "schedule":
+        return <MatchSchedule />;
       default:
         return <LiveMatchesSection />;
     }

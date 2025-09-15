@@ -196,4 +196,15 @@ export const mockSchedule = [
     status: "upcoming",
     result: null,
   },
+  {
+    id: 6,
+    matchNumber: "Match 6",
+    team1: { name: "Mumbai Indians", shortName: "MI" },
+    team2: { name: "Chennai Super Kings", shortName: "CSK" },
+    status: "live",
+    venue: "Wankhede Stadium, Mumbai",
+    date: "2024-04-15",
+    time: "19:30",
+    result: null,
+  }
 ];
