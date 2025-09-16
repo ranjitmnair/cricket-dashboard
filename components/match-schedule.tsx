@@ -107,7 +107,7 @@ export function MatchSchedule() {
               <div className="flex items-center gap-3 flex-1">
                 <div className="relative w-8 h-8">
                   <Image
-                    src={match.team1.logo || "/placeholder.svg"}
+                  src={`/team-logos/${match.team1.shortName}.png`}
                     alt={`${match.team1.name} logo`}
                     fill
                     className="object-contain rounded"
@@ -130,7 +130,7 @@ export function MatchSchedule() {
                 </div>
                 <div className="relative w-8 h-8">
                   <Image
-                    src={match.team2.logo || "/placeholder.svg"}
+                  src={`/team-logos/${match.team2.shortName}.png`}
                     alt={`${match.team2.name} logo`}
                     fill
                     className="object-contain rounded"

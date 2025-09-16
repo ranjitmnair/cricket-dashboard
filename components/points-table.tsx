@@ -133,7 +133,7 @@ export function PointsTable() {
                       <div className="flex items-center gap-3">
                         <div className="relative w-8 h-8">
                           <Image
-                            src={entry.team.logo || "/placeholder.svg"}
+                  src={`/team-logos/${entry.team.shortName}.png`}
                             alt={`${entry.team.name} logo`}
                             fill
                             className="object-contain rounded"
@@ -187,7 +187,7 @@ export function PointsTable() {
                       </div>
                       <div className="relative w-10 h-10">
                         <Image
-                          src={entry.team.logo || "/placeholder.svg"}
+                  src={`/team-logos/${entry.team.shortName}.png`}
                           alt={`${entry.team.name} logo`}
                           fill
                           className="object-contain rounded"

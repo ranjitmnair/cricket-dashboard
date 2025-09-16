@@ -63,7 +63,7 @@ export function LiveMatchCard({ match }: LiveMatchCardProps) {
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10">
                 <Image
-                  src={match.team1.logo || "/placeholder.svg"}
+                  src={`/team-logos/${match.team1.shortName}.png`}
                   alt={`${match.team1.name} logo`}
                   fill
                   className="object-contain rounded"
@@ -92,7 +92,7 @@ export function LiveMatchCard({ match }: LiveMatchCardProps) {
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10">
                 <Image
-                  src={match.team2.logo || "/placeholder.svg"}
+                  src={`/team-logos/${match.team2.shortName}.png`}
                   alt={`${match.team2.name} logo`}
                   fill
                   className="object-contain rounded"
