@@ -5,11 +5,25 @@ import { LiveMatchCard } from "./live-match-card";
 import type { Match } from "@/lib/types";
 import { RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useMatchEvents } from "@/app/hooks/use-match-events";
+import { useNotifications } from "@/app/hooks/use-notification";
+import { NotificationSettingsCard } from "./notification-settings";
+import { EventHistory } from "./event-history";
 
 export function LiveMatchesSection() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<string>("");
+
+  const {
+    settings,
+    setSettings,
+    permission,
+    requestNotificationPermission,
+    handleMatchEvent,
+  } = useNotifications();
+
+  const { events, isConnected } = useMatchEvents(handleMatchEvent);
 
   const fetchMatches = async () => {
     try {
@@ -29,6 +43,7 @@ export function LiveMatchesSection() {
   };
 
   useEffect(() => {
+    console.log("reflect changes");
     fetchMatches();
 
     // Auto-refresh every 30 seconds for live matches
@@ -76,6 +91,16 @@ export function LiveMatchesSection() {
           <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
           Refresh
         </Button>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <NotificationSettingsCard
+          settings={settings}
+          onSettingsChange={setSettings}
+          permission={permission}
+          onRequestPermission={requestNotificationPermission}
+        />
+        <EventHistory events={events} />
       </div>
 
       <div className="space-y-4">

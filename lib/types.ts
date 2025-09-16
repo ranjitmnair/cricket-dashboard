@@ -45,3 +45,27 @@ export interface ScheduleMatch {
   status: "upcoming" | "completed" | "live"
   result?: string | null
 }
+
+export interface NotificationSettings {
+  enabled: boolean
+  wickets: boolean
+  boundaries: boolean
+  milestones: boolean
+  matchUpdates: boolean
+  browserNotifications: boolean
+}
+
+export interface MatchEvent {
+  id: string
+  matchId: number
+  type: "wicket" | "boundary" | "six" | "milestone" | "match_start" | "match_end" | "innings_break"
+  timestamp: string
+  description: string
+  significance: "low" | "medium" | "high"
+  data?: {
+    player?: string
+    runs?: number
+    over?: number
+    team?: string
+  }
+}

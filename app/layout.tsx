@@ -6,7 +6,7 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Suspense } from "react"
 import "./global.css"
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "IPL T20 Live Dashboard",
