@@ -1,61 +1,69 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { RefreshCw, TrendingUp, TrendingDown } from "lucide-react"
-import type { PointsTableEntry } from "@/lib/types"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { RefreshCw, TrendingUp, TrendingDown } from "lucide-react";
+import type { PointsTableEntry } from "@/lib/types";
+import Image from "next/image";
 
 export function PointsTable() {
-  const [pointsTable, setPointsTable] = useState<PointsTableEntry[]>([])
-  const [loading, setLoading] = useState(true)
-  const [lastUpdated, setLastUpdated] = useState<string>("")
+  const [pointsTable, setPointsTable] = useState<PointsTableEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<string>("");
 
   const fetchPointsTable = async () => {
     try {
-      setLoading(true)
-      const response = await fetch("/api/points-table")
-      const data = await response.json()
+      setLoading(true);
+      const response = await fetch(`/api/points-table`, {
+        next: { tags: ["points-table"] },
+      });
+      const data = await response.json();
 
       if (data.success) {
-        setPointsTable(data.data)
-        setLastUpdated(new Date(data.lastUpdated).toLocaleTimeString())
+        setPointsTable(data.data);
+        setLastUpdated(new Date(data.lastUpdated).toLocaleTimeString());
       }
     } catch (error) {
-      console.error("Failed to fetch points table:", error)
+      console.error("Failed to fetch points table:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchPointsTable()
-  }, [])
+    fetchPointsTable();
+  }, []);
 
   const getFormBadge = (result: string) => {
     return (
       <Badge
         variant={result === "W" ? "default" : "destructive"}
         className={`w-6 h-6 p-0 text-xs font-bold ${
-          result === "W" ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"
+          result === "W"
+            ? "bg-green-500 hover:bg-green-600"
+            : "bg-red-500 hover:bg-red-600"
         }`}
       >
         {result}
       </Badge>
-    )
-  }
+    );
+  };
 
   const getQualificationStatus = (position: number) => {
     if (position <= 4) {
-      return { icon: TrendingUp, color: "text-green-600", label: "Qualified" }
+      return { icon: TrendingUp, color: "text-green-600", label: "Qualified" };
     } else if (position <= 6) {
-      return { icon: TrendingUp, color: "text-yellow-600", label: "In Contention" }
+      return {
+        icon: TrendingUp,
+        color: "text-yellow-600",
+        label: "In Contention",
+      };
     } else {
-      return { icon: TrendingDown, color: "text-red-600", label: "Eliminated" }
+      return { icon: TrendingDown, color: "text-red-600", label: "Eliminated" };
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -71,7 +79,7 @@ export function PointsTable() {
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -80,7 +88,11 @@ export function PointsTable() {
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="text-2xl">Points Table</CardTitle>
-            {lastUpdated && <p className="text-sm text-muted-foreground mt-1">Last updated: {lastUpdated}</p>}
+            {lastUpdated && (
+              <p className="text-sm text-muted-foreground mt-1">
+                Last updated: {lastUpdated}
+              </p>
+            )}
           </div>
           <Button
             variant="outline"
@@ -114,18 +126,22 @@ export function PointsTable() {
             </thead>
             <tbody>
               {pointsTable.map((entry) => {
-                const status = getQualificationStatus(entry.position)
-                const StatusIcon = status.icon
+                const status = getQualificationStatus(entry.position);
+                const StatusIcon = status.icon;
                 return (
                   <tr
                     key={entry.team.shortName}
                     className={`border-b hover:bg-muted/50 transition-colors ${
-                      entry.position <= 4 ? "bg-green-50 dark:bg-green-950/20" : ""
+                      entry.position <= 4
+                        ? "bg-green-50 dark:bg-green-950/20"
+                        : ""
                     }`}
                   >
                     <td className="py-3 px-2">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-lg">{entry.position}</span>
+                        <span className="font-bold text-lg">
+                          {entry.position}
+                        </span>
                         <StatusIcon className={`w-4 h-4 ${status.color}`} />
                       </div>
                     </td>
@@ -133,23 +149,37 @@ export function PointsTable() {
                       <div className="flex items-center gap-3">
                         <div className="relative w-8 h-8">
                           <Image
-                  src={`/team-logos/${entry.team.shortName}.png`}
+                            src={`/team-logos/${entry.team.shortName}.png`}
                             alt={`${entry.team.name} logo`}
                             fill
                             className="object-contain rounded"
                           />
                         </div>
                         <div>
-                          <div className="font-semibold">{entry.team.shortName}</div>
-                          <div className="text-xs text-muted-foreground hidden lg:block">{entry.team.name}</div>
+                          <div className="font-semibold">
+                            {entry.team.shortName}
+                          </div>
+                          <div className="text-xs text-muted-foreground hidden lg:block">
+                            {entry.team.name}
+                          </div>
                         </div>
                       </div>
                     </td>
-                    <td className="text-center py-3 px-2 font-medium">{entry.matches}</td>
-                    <td className="text-center py-3 px-2 font-medium text-green-600">{entry.won}</td>
-                    <td className="text-center py-3 px-2 font-medium text-red-600">{entry.lost}</td>
-                    <td className="text-center py-3 px-2 font-bold text-primary">{entry.points}</td>
-                    <td className="text-center py-3 px-2 font-medium">{entry.nrr}</td>
+                    <td className="text-center py-3 px-2 font-medium">
+                      {entry.matches}
+                    </td>
+                    <td className="text-center py-3 px-2 font-medium text-green-600">
+                      {entry.won}
+                    </td>
+                    <td className="text-center py-3 px-2 font-medium text-red-600">
+                      {entry.lost}
+                    </td>
+                    <td className="text-center py-3 px-2 font-bold text-primary">
+                      {entry.points}
+                    </td>
+                    <td className="text-center py-3 px-2 font-medium">
+                      {entry.nrr}
+                    </td>
                     <td className="text-center py-3 px-2">
                       <div className="flex gap-1 justify-center">
                         {entry.form.map((result, index) => (
@@ -158,12 +188,15 @@ export function PointsTable() {
                       </div>
                     </td>
                     <td className="text-center py-3 px-2">
-                      <Badge variant="outline" className={`text-xs ${status.color}`}>
+                      <Badge
+                        variant="outline"
+                        className={`text-xs ${status.color}`}
+                      >
                         {status.label}
                       </Badge>
                     </td>
                   </tr>
-                )
+                );
               })}
             </tbody>
           </table>
@@ -171,50 +204,71 @@ export function PointsTable() {
 
         <div className="md:hidden space-y-3">
           {pointsTable.map((entry) => {
-            const status = getQualificationStatus(entry.position)
-            const StatusIcon = status.icon
+            const status = getQualificationStatus(entry.position);
+            const StatusIcon = status.icon;
             return (
               <Card
                 key={entry.team.shortName}
-                className={`${entry.position <= 4 ? "border-green-200 bg-green-50 dark:bg-green-950/20" : ""}`}
+                className={`${
+                  entry.position <= 4
+                    ? "border-green-200 bg-green-50 dark:bg-green-950/20"
+                    : ""
+                }`}
               >
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-xl">{entry.position}</span>
+                        <span className="font-bold text-xl">
+                          {entry.position}
+                        </span>
                         <StatusIcon className={`w-4 h-4 ${status.color}`} />
                       </div>
                       <div className="relative w-10 h-10">
                         <Image
-                  src={`/team-logos/${entry.team.shortName}.png`}
+                          src={`/team-logos/${entry.team.shortName}.png`}
                           alt={`${entry.team.name} logo`}
                           fill
                           className="object-contain rounded"
                         />
                       </div>
                       <div>
-                        <div className="font-semibold text-lg">{entry.team.shortName}</div>
-                        <div className="text-sm text-muted-foreground">{entry.team.name}</div>
+                        <div className="font-semibold text-lg">
+                          {entry.team.shortName}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {entry.team.name}
+                        </div>
                       </div>
                     </div>
-                    <Badge variant="outline" className={`text-xs ${status.color}`}>
+                    <Badge
+                      variant="outline"
+                      className={`text-xs ${status.color}`}
+                    >
                       {status.label}
                     </Badge>
                   </div>
 
                   <div className="grid grid-cols-4 gap-4 text-center">
                     <div>
-                      <div className="text-xs text-muted-foreground">Matches</div>
+                      <div className="text-xs text-muted-foreground">
+                        Matches
+                      </div>
                       <div className="font-semibold">{entry.matches}</div>
                     </div>
                     <div>
                       <div className="text-xs text-muted-foreground">Won</div>
-                      <div className="font-semibold text-green-600">{entry.won}</div>
+                      <div className="font-semibold text-green-600">
+                        {entry.won}
+                      </div>
                     </div>
                     <div>
-                      <div className="text-xs text-muted-foreground">Points</div>
-                      <div className="font-bold text-primary">{entry.points}</div>
+                      <div className="text-xs text-muted-foreground">
+                        Points
+                      </div>
+                      <div className="font-bold text-primary">
+                        {entry.points}
+                      </div>
                     </div>
                     <div>
                       <div className="text-xs text-muted-foreground">NRR</div>
@@ -223,7 +277,9 @@ export function PointsTable() {
                   </div>
 
                   <div className="mt-3">
-                    <div className="text-xs text-muted-foreground mb-1">Recent Form</div>
+                    <div className="text-xs text-muted-foreground mb-1">
+                      Recent Form
+                    </div>
                     <div className="flex gap-1">
                       {entry.form.map((result, index) => (
                         <div key={index}>{getFormBadge(result)}</div>
@@ -232,7 +288,7 @@ export function PointsTable() {
                   </div>
                 </CardContent>
               </Card>
-            )
+            );
           })}
         </div>
 
@@ -258,5 +314,5 @@ export function PointsTable() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -9,7 +9,7 @@ export const mockMatches = [
     time: "19:30",
     score: {
       team1: { runs: 185, wickets: 6, overs: 20 },
-      team2: { runs: 142, wickets: 8, overs: 18.3 },
+      team2: { runs: 142, wickets: 8, overs: 18.4 },
     },
     result: null,
   },
